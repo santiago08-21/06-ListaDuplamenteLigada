@@ -20,7 +20,7 @@ void exibirReverso();
 void inserirElemento();
 void excluirPrimeiroElemento();
 void excluirUltimoElemento();
-
+void excluirElemento();
 //--------------------------
 
 
@@ -32,7 +32,7 @@ int main()
 void menu()
 {
 	int op = 0;
-	while (op != 8) {
+	while (op != 9) {
 		system("cls"); // somente no windows
 		cout << "Menu Lista Ligada";
 		cout << endl << endl;
@@ -43,7 +43,8 @@ void menu()
 		cout << "5 - Exibir elementos na ordem reversa \n";
 		cout << "6 - Excluir primeiro elemento \n";
 		cout << "7 - Excluir ultimo elemento \n";
-		cout << "8 - Sair \n\n";
+		cout << "8 - Excluir elemento\n";
+		cout << "9 - Sair \n\n";
 
 		cout << "Opcao: ";
 		cin >> op;
@@ -144,24 +145,84 @@ void inserirElemento()
 		ultimo->prox = novo;
 		ultimo = novo;
 	}
+
 }
 
 
 // funções a serem implementadas no exericio
 void exibirReverso()
 {
-
+	if (primeiro == NULL) {
+		cout << "Lista vazia \n";
+		return;
+	}
+	else {
+		cout << "Elementos: \n";
+		NO* aux = ultimo;
+		while (aux != NULL) {
+			cout << aux->valor << endl;
+			aux = aux->ant;
+		}
+	}
 }
 
 void excluirPrimeiroElemento()
 {
+	if (primeiro == NULL) {
+		cout << "Lista vazia \n";
+		return;
 
-}
+	}
+	else if (primeiro == ultimo)
+	{
+		cout << "Elemento excluido, lista vazia\n";
+		NO* paraexcluir = primeiro;
+		primeiro = NULL;
+		ultimo = NULL;
+		free(paraexcluir);
+		return;
+	}
+	else{
+	NO* paraexcluir = primeiro;
+	primeiro = primeiro->prox;
+	free(paraexcluir);
+	cout << "Primeiro elemento excluido" << endl;
+	}
+	}
+
+
 
 void excluirUltimoElemento()
 {
+	if (primeiro == NULL)
+	{
+		cout << "Lista vazia \n";
+		return;
+
+	}
+	else if (primeiro == ultimo)
+	{
+		cout << "Elemento excluido, lista vazia\n";
+		primeiro = NULL;
+		ultimo = NULL;
+		return;
+	}
+	else {
+		NO* paraexcluir = ultimo;
+		ultimo = ultimo->ant;
+		ultimo->prox = NULL;
+		free(paraexcluir);
+		cout << "Ultimo elemento excluido" << endl;
+	}
+}
+
+void excluirElemento()
+{
 
 }
+
+
+
 
 
 
